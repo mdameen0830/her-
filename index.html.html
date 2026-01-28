@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Beloved🥰🥳🥳❤️!!!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --burgundy: #5d0e1d;
+            --cream: #f4eade;
+            --accent: #d4a373;
+            --text: #2b1d1d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--burgundy);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .screen {
+            min-height: 100vh;
+            width: 100vw;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            background: radial-gradient(circle, #7a1628 0%, #4a0a16 100%);
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .screen.active { display: flex; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #landing {
+            background: var(--burgundy) url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+        }
+
+        .scrapbook-container {
+            background: var(--cream);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
+            position: relative;
+            max-width: 500px;
+            z-index: 2;
+        }
+
+        .main-photo {
+            width: 250px;
+            height: 250px;
+            border: 15px solid white;
+            border-bottom: 50px solid white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            object-fit: cover;
+            transform: rotate(-3deg);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--burgundy);
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: var(--burgundy);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+            z-index: 10;
+        }
+
+        .btn:hover { background: #8e1a2d; transform: scale(1.05); }
+
+
+        .confetti-piece {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #ffd700;
+            top: -10px;
+            z-index: 999;
+            border-radius: 2px;
+            animation: fall 3s linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .party-banner {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .party-banner span {
+            background: var(--burgundy);
+            color: var(--cream);
+            padding: 8px 10px;
+            border-radius: 0 0 10px 10px;
+            font-weight: bold;
+            animation: sway 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes sway {
+            from { transform: rotate(-5deg); }
+            to { transform: rotate(5deg); }
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            width: 100%;
+            margin-top: 50px;
+        }
+
+        .photo-card {
+            background: var(--cream);
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            opacity: 0.8;
+        }
+
+        .photo-card.revealed {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            filter: grayscale(100%) blur(5px);
+            transition: 0.5s ease;
+        }
+
+        .photo-card.revealed img {
+            filter: grayscale(0%) blur(0px);
+        }
+
+        .photo-card p {
+            font-size: 0.8rem;
+            margin-top: 10px;
+            font-weight: bold;
+            color: var(--burgundy);
+            visibility: hidden;
+        }
+
+        .photo-card.revealed p {
+            visibility: visible;
+        }
+
+        .message-card {
+            background: var(--cream);
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 600px;
+            line-height: 1.6;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        #music-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--cream);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bgMusic" loop>
+        <source src="C:\Users\Mohammed Ameen\Music\LOVER INSTRUMENTAL.mpeg" type="audio/mpeg">
+    </audio>
+
+    <div id="music-toggle" onclick="toggleMusic()">🎵</div>
+
+    <section id="landing" class="screen active">
+        <div class="party-banner">
+            <span>🎉</span><span>H</span><span>A</span><span>P</span><span>P</span><span>Y</span>
+            <span>B</span><span>I</span><span>R</span><span>T</span><span>H</span><span>D</span><span>A</span><span>Y</span><span>🎉</span>
+        </div>
+        
+        <div class="scrapbook-container">
+            <img src="C:\Users\Mohammed Ameen\Downloads\New folder\Pictures\Areena\code first.jpeg" alt="Birthday Person" class="main-photo">
+            <h1>HAPPY BIRTHDAY BABYYYY🥰</h1>
+            <button class="btn" onclick="startExperience()">Open Your Surprise →</button>
+        </div>
+    </section>
+
+    <section id="gallery" class="screen">
+        <h2 style="color: var(--cream); font-family: 'Playfair Display'; font-size: 2rem; margin-bottom: 20px;">TAP THE PICTURES!!!🤭🤭❤️</h2>
+        <div class="gallery-grid">
+            <div class="photo-card" onclick="reveal(this)">
+                <img src="C:\Users\Mohammed Ameen\Downloads\New folder\Pictures\Areena\code sceond.jpeg">
+                <p>MY PRETTYY PRINCESS💘👑</p>
+            </div>
+            <div class="photo-card" onclick="reveal(this)">
+                <img src="C:\Users\Mohammed Ameen\Downloads\New folder\Pictures\Areena\code third.jpeg">
+                <p>CAN'T FORGET OUR FIRST DATE🤭🤭</p>
+            </div>
+            <div class="photo-card" onclick="reveal(this)">
+                <img src="C:\Users\Mohammed Ameen\Downloads\New folder\Pictures\Areena\code .jpeg">
+                <p>YOU MAKE MY WORLD A BETTER PLACE🥰💞</p>
+            </div>
+            <div class="photo-card" onclick="reveal(this)">
+                <img src="C:\Users\Mohammed Ameen\Downloads\New folder\Pictures\Areena\code fifth.jpeg">
+                <p>THE ONE I WANNA LOVE FOREVER♾️💞</p>
+            </div>
+            <div class="photo-card" onclick="reveal(this)">
+                <img src="C:\Users\Mohammed Ameen\Downloads\New folder\Pictures\Areena\code sixth.jpeg">
+                <p>MY HAPPINESS🤭🤭🤭</p>
+            </div>
+            <div class="photo-card" onclick="reveal(this)">
+                <img src="C:\Users\Mohammed Ameen\Downloads\New folder\Pictures\Areena\CODE 7.jpeg">
+                <p>THE EYES I ALWAYS FALL IN LOVE WITH🥰🤭</p>
+            </div>
+            <div class="photo-card" onclick="reveal(this)">
+                <img src="C:\Users\Mohammed Ameen\Downloads\New folder\Pictures\Areena\CODE 8.jpeg">
+                <p>YOU’RE MY FAVOURITE PLACE TO BE, NO MATTER WHERE WE ARE🤭🤭</p>
+            </div>
+            <div class="photo-card" onclick="reveal(this)">
+                <img src="C:\Users\Mohammed Ameen\Downloads\New folder\Pictures\Areena\CODE 9.jpeg">
+                <p>YOU’RE GOOFY IN THE MOST LOVEABLE, HEART-STEALING WAY POSSIBLE🤭🤭🥰🥰</p>
+            </div>
+        </div>
+        <button class="btn" style="margin-top: 40px;" onclick="nextScreen('message')">Read my message →</button>
+    </section>
+
+    <section id="message" class="screen">
+        <div class="message-card">
+            <h2 style="font-family: 'Playfair Display'; margin-bottom: 15px; color: var(--burgundy);">HAPPIEST BIRTHDAYYY BELOVEDDDD!!!!!😘😘🥰🥰💞💞</h2>
+            <p style="text-align: left; font-size: 0.95rem;">
+                Happy Birthday, My Moon🥰🥰<br><br>
+                You are the quiet magic in my life, the calm in my chaos and the light I never knew I was missing. Every day with you feels like a gift, and every smile of yours makes my heart feel at home. Loving you is the easiest and most beautiful thing I’ve ever done.<br><br>
+                To My Queen, you carry so much grace, strength, and love within you, and I admire you more than words can say. You make the world around you softer and kinder just by being in it, and I’m so proud to call you mine.<br><br>
+                And Meri Jaan, my heart beats a little stronger because of you. On your special day, I wish you endless happiness, deep peace, and all the love your heart can hold that comes through Allah. May this year bring you closer to your dreams and remind you, every single day, how deeply cherished you are, today, tomorrow, and always. 💕<br><br>
+                I WILL ALWAYS LOVE YOU MY PRINCESS💘👑.<br><br>
+                Your Bitch hehehehehe😘😘<br>
+                Ameen
+            </p>
+            <div class="emoji-row">🎂 ✨ 💖</div>
+            <button class="btn" onclick="nextScreen('landing')">Back to Start ↺</button>
+        </div>
+    </section>
+
+    <script>
+        const music = document.getElementById('bgMusic');
+
+        function startExperience() {
+            music.play().catch(e => console.log("Audio play deferred"));
+            nextScreen('gallery');
+            launchConfetti();
+        }
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                document.getElementById('music-toggle').innerText = "🎵";
+            } else {
+                music.pause();
+                document.getElementById('music-toggle').innerText = "🔇";
+            }
+        }
+
+        function nextScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(screenId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function launchConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti-piece');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+                confetti.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                confetti.style.opacity = Math.random();
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+
+        function reveal(card) {
+            if(!card.classList.contains('revealed')) {
+                card.classList.add('revealed');
+                launchConfetti();
+            }
+        }
+    </script>
+</body>
+</html>

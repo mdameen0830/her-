@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --burgundy: #5d0e1d;
+            --cream: #f4eade;
+            --text: #2b1d1d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--burgundy);
+            color: var(--text);
+            overflow: hidden; /* Prevents scrolling during transitions */
+        }
+
+        /* Background Music Control */
+        #music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: white;
+        }
+
+        .screen {
+            height: 100vh;
+            width: 100vw;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            background: radial-gradient(circle, #7a1628 0%, #4a0a16 100%);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .screen.active { display: flex; animation: slideIn 0.6s ease-out; }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* --- Photo Flip Effect --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            width: 150px;
+            height: 180px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.revealed .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .flip-card-front {
+            background-color: var(--cream);
+            color: var(--burgundy);
+        }
+
+        .flip-card-back {
+            background-color: white;
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-back img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .flip-card-back p {
+            font-size: 0.7rem;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        /* UI Elements */
+        .scrapbook-container {
+            background: var(--cream);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
+            max-width: 450px;
+        }
+
+        h1, h2 { font-family: 'Playfair Display', serif; }
+
+        .btn {
+            background: var(--burgundy);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .btn:hover { background: #8e1a2d; transform: translateY(-2px); }
+    </style>
+</head>
+<body>
+
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="music-control" onclick="toggleMusic()">🎵</div>
+
+    <section id="landing" class="screen active">
+        <div class="scrapbook-container">
+            <h1 style="color: var(--burgundy); font-size: 2.5rem;">HAPPY BIRTHDAY</h1>
+            <p>I have a surprise for you...</p>
+            <button class="btn" onclick="startExperience()">Open Your Gift →</button>
+        </div>
+    </section>
+
+    <section id="gallery1" class="screen">
+        <h2 style="color: var(--cream);">Reasons I love you ❤️</h2>
+        <div class="gallery-grid">
+            <div class="flip-card" onclick="this.classList.toggle('revealed')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">📸<br>Tap me</div>
+                    <div class="flip-card-back"><img src="https://picsum.photos/200/300?random=1"><p>Your kindness</p></div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('revealed')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">📸<br>Tap me</div>
+                    <div class="flip-card-back"><img src="https://picsum.photos/200/300?random=2"><p>How you listen</p></div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('revealed')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">📸<br>Tap me</div>
+                    <div class="flip-card-back"><img src="https://picsum.photos/200/300?random=3"><p>That energy!</p></div>
+                </div>
+            </div>
+        </div>
+        <button class="btn" onclick="nextScreen('gallery2')">More memories →</button>
+    </section>
+
+    <section id="gallery2" class="screen">
+        <h2 style="color: var(--cream);">And more moments... ✨</h2>
+        <div class="gallery-grid">
+            <div class="flip-card" onclick="this.classList.toggle('revealed')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">📸<br>Click!</div>
+                    <div class="flip-card-back"><img src="https://picsum.photos/200/300?random=4"><p>The way you laugh</p></div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('revealed')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">📸<br>Click!</div>
+                    <div class="flip-card-back"><img src="https://picsum.photos/200/300?random=5"><p>Our adventures</p></div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('revealed')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">📸<br>Click!</div>
+                    <div class="flip-card

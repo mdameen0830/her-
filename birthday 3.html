@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Beloved🥰🥳🥳❤️!!!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --burgundy: #5d0e1d;
+            --cream: #f4eade;
+            --accent: #d4a373;
+            --text: #2b1d1d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--burgundy);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        .screen {
+            min-height: 100vh;
+            width: 100vw;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            background: radial-gradient(circle, #7a1628 0%, #4a0a16 100%);
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .screen.active { display: flex; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+      
+        #landing {
+            background: var(--burgundy) url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+        }
+
+        .scrapbook-container {
+            background: var(--cream);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.2);
+            position: relative;
+            max-width: 500px;
+        }
+
+        .main-photo {
+            width: 250px;
+            height: 250px;
+            border: 15px solid white;
+            border-bottom: 50px solid white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            object-fit: cover;
+            transform: rotate(-3deg);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--burgundy);
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: var(--burgundy);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .btn:hover { background: #8e1a2d; transform: scale(1.05); }
+
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            display: none;
+        }
+        
+        .confetti.active {
+            display: block;
+        }
+
+        .confetti span {
+            position: absolute;
+            width: 8px;
+            height: 14px;
+            background: hsl(calc(360 * var(--i)), 80%, 60%);
+            animation: pop 120s ease-out forwards;
+        }
+        .confetti span:nth-child(n) {
+            --i: calc(var(--n) * 0.12);
+        }
+        
+        .confetti span:nth-child(1) { left: -120px; --i: 0.1; }
+        .confetti span:nth-child(2) { left: -80px;  --i: 0.2; }
+        .confetti span:nth-child(3) { left: -40px;  --i: 0.3; }
+        .confetti span:nth-child(4) { left: 0;      --i: 0.4; }
+        .confetti span:nth-child(5) { left: 40px;   --i: 0.5; }
+        .confetti span:nth-child(6) { left: 80px;   --i: 0.6; }
+        .confetti span:nth-child(7) { left: 120px;  --i: 0.7; }
+        .confetti span:nth-child(8) { left: 160px;  --i: 0.8; }
+        
+        
+        @keyframes pop {
+            from {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(600px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .party-banner {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+        }
+    
+        .party-banner span {
+            background: var(--burgundy);
+            color: var(--cream);
+            padding: 8px 10px;
+            border-radius: 0 0 10px 10px;
+            font-weight: bold;
+            animation: sway 2s ease-in-out infinite alternate;
+        }
+        .party-banner span:nth-child(even) {
+            animation-delay: 0.3s;
+        }
+        
+        @keyframes sway {
+            from {
+                transform: rotate(-5deg);
+            }
+            to {
+                transform: rotate(5deg);
+            }
+        
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            width: 100%;
+            margin-top: 50px;
+        }
+
+        .photo-card {
+            background: var(--cream);
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: 0.5s;
+            position: relative;
+        }
+
+        .photo-card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: transform 0.8s ease;
+            transform-style: preserve-3d;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .photo-card:hover .photo-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .photo-card-front,
+        .photo-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            background: var(--cream);
+            transform: rotateY(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .photo-card-front,
+        .message-text {
+            display: none;
+        }
+        
+        
+        .photo-card.revealed .message-text {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .photo-card.revealed img { display: block; }
+        .photo-card.revealed .icon { display: none; }
+        .photo-card p { font-size: 0.8rem; margin-top: 10px; display: none; }
+        .photo-card.revealed p { display: block; }
+
+        .icon { font-size: 2rem; color: var(--burgundy); }
+        
+        .photo-card.revealed .icon {
+            display: none;
+        }
+
+        .message-card {
+            background: var(--cream);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .emoji-row { font-size: 2rem; margin: 20px 0; }
+    </style>
+</head>
+<body>
+
+    <section id="landing" class="screen active">
+        <div class="scrapbook-container">
+            <div class="confetti" id="confetti">
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span>
+            </div>
+            <img src="C:\Users\Mohammed Ameen\Downloads\New folder\Pictures\Areena\code first.jpeg" alt="Birthday Person" class="main-photo">
+            <h1>HAPPY BIRTHDAY BABYYYY🥰🥰🥰</h1>
+            <button class="btn" onclick="nextScreen('gallery')">Continue →</button>
+        </div>
+        
+        <div class="party-banner">
+            <span>🎉</span>
+            <span>H</span><span>A</span><span>P</span><span>P</span><span>Y</span>
+            <span>B</span><span>I</span><span>R</span><span>T</span><span>H</span><span>D</span><span>A</span><span>Y</span>
+            <span>🎉</span>
+            </div>
+    </section>
+
+    <section id="gallery" class="screen">
+        <h2 style="color: var(--cream); font-family: 'Playfair Display'; font-size: 2rem;">TAP THE PICTURES!!!🤭🤭❤️</h2>
+        <div class="gallery-grid">
+            <div class="photo-card" onclick="reveal(this)">
+                <div class="photo-card-inner">
+                <div class="icon"></div>
+                 <div class="photo-card-front"></div>
+                <img src="C:\Users\Mohammed Ameen\Downloads\New folder\Pictures\Areena\code sceond.jpeg">
+                 </div>
+                <p>MY PRETTYY PRINCESS💘👑</p>
+            </div>
+            <div class="photo-card" onclick="reveal(this)">
+                <div class="photo-card-inner">
+                <div class="icon"></div>
+                 <div class="photo-card-front"></div>
+                <img src="C:\Users\Mohammed Ameen\Downloads\New folder\Pictures\Areena\code third.jpeg">
+                 </div>
+                <p>CAN"T FORGET OUR FIRST DATE🤭🤭</p>
+            </div>
+            <div class="photo-card" onclick="reveal(this)">
+                <div class="photo-card-inner">
+                <div class="icon"></div>
+                 <div class="photo-card-front"></div>
+                <img src="C:\Users\Mohammed Ameen\Downloads\New folder\Pictures\Areena\code .jpeg">
+                 </div>
+                <p>YOU MAKE MY WORLD A BETTER PLACE🥰💞💞</p>
+            </div>
+            <div class="photo-card" onclick="reveal(this)">
+                <div class="photo-card-inner">
+                <div class="icon"></div>
+                 <div class="photo-card-front"></div>
+                <img src="C:\Users\Mohammed Ameen\Downloads\New folder\Pictures\Areena\code fifth.jpeg">
+                 </div>
+                <p>THE ONE I WANNA LOVE FOREVER♾️💞💞</p>
+            </div>
+            <div class="photo-card" onclick="reveal(this)">
+                <div class="photo-card-inner">
+                    <div class="icon"></div>
+                 <div class="photo-card-front"></div>
+                <img src="C:\Users\Mohammed Ameen\Downloads\New folder\Pictures\Areena\code sixth.jpeg">
+                 </div>
+                <p>MY HAPPINESS🤭🤭🤭</p>
+            </div>
+        </div>
+        <button class="btn" style="margin-top: 40px;" onclick="nextScreen('message')">Read my message →</button>
+    </section>
+
+    <section id="message" class="screen">
+        <div class="message-card">
+            <h2 style="font-family: 'Playfair Display'; margin-bottom: 15px;">HAPPIEST BIRTHDAYYY BELOVEDDDD!!!!!😘😘🥰🥰💞💞</h2>
+            <p>Happy Birthday, My Moon🥰🥰
+You are the quiet magic in my life, the calm in my chaos and the light I never knew I was missing. Every day with you feels like a gift, and every smile of yours makes my heart feel at home. Loving you is the easiest and most beautiful thing I’ve ever done.
+To My Queen, you carry so much grace, strength, and love within you, and I admire you more than words can say. You make the world around you softer and kinder just by being in it, and I’m so proud to call you mine.
+And Meri Jaan, my heart beats a little stronger because of you. On your special day, I wish you endless happiness, deep peace, and all the love your heart can hold that comes through Allah . May this year bring you closer to your dreams and remind you, every single day, how deeply cherished you are, today, tomorrow, and always. 💕
+
+I WILL ALWAYS LOVE YOU MY PRINCESS💘👑.
+
+Your Bitch hehehehehe😘😘
+Ameen</p>
+            <div class="emoji-row">🎂 ✨ 💖</div>
+            <button class="btn" onclick="nextScreen('landing')">Back to Start ↺</button>
+        </div>
+    </section>
+
+    <script>
+        function nextScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        function launchConfetti() {
+            const confetti = document.getElementById("confetti");
+            confetti.classList.add("active");
+            
+            setTimeout(() => {
+                confetti.classList.remove("active");
+            }, 2000);
+        }
+
+        function reveal(card) {
+            card.classList.add("revealed");
+            launchConfetti();
+        }
+
+        function reveal(card) {
+            card.classList.add('revealed');
+        }
+    </script>
+</body>
+</html>
